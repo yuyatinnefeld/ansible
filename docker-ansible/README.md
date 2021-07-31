@@ -5,14 +5,14 @@
 
 ## Topics
 
-1. Initial Setup
-2. Create Playbook tasks
-3. Use Roles
-4. Working with Secrets
-5. Network Management
+### 1. [Initial-Setup](#Initial-Setup)
+### 2. [Create-Playbook-Tasks](#Create-Playbook-Tasks)
+### 3. [Roles](#Roles)
+### 4. Working with Secrets
+### 5. Network Management
 
 
-## Initial Setup
+## Initial-Setup
 
 git clone
 
@@ -63,7 +63,7 @@ ssh target02
 ls
 ```
 
-## Custom Setup
+## Create-Playbook-Tasks
 
 
 ### tags
@@ -166,7 +166,7 @@ looping with the templates
 ansible-playbook -i inventory.ini tasks7.yml --tags create
 ```
 
-## roles
+## Roles
 
 ### run tasks/create_user.yml without the role
 create user
