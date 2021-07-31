@@ -8,7 +8,7 @@
 ### 1. [Initial-Setup](#Initial-Setup)
 ### 2. [Create-Playbook-Tasks](#Create-Playbook-Tasks)
 ### 3. [Roles](#Roles)
-### 4. Working with Secrets
+### 4. [Secrets](#Secrets)
 ### 5. Network Management
 
 
@@ -345,4 +345,68 @@ ls
 delete user
 ```bash
 ansible-playbook -i inventory.ini create_role.yml -e user_name=yuya -e user_state=absent
+```
+
+### import role from ansible galaxy
+```bash
+# login with the github user
+ansible-galaxy login
+
+# search roles in the galax
+ansible-galaxy search create_user
+
+# install an example role (ex. gortc.nginx)
+ansible-galaxy install <company>.<product> -p ./
+ansible-galaxy install gortc.nginx -p ./
+
+```
+
+## Secrets
+
+you can use ansible vault file to encrypt the secret information
+
+```bash
+mkdir group_vars
+mkdir group_vars/all
+touch group_vars/all/vars
+touch group_vars/all/vault
+```
+
+```bash
+# group_vars/all/vars
+password: '{{vault_special_secretpwd}}'
+```
+
+```bash
+# group_vars/all/vault
+vault_special_secretpwd: thisIsMyPassword
+```
+
+```bash
+cd group_vars/all
+more vars
+password: '{{vault_special_secretpwd}}'
+```
+
+```bash
+ansible-vault encrypt vault
+```
+
+```bash
+# ansible-vault encrypt vault (e.g. hallo)
+New Vault password: 
+Confirm New Vault password: 
+Encryption successful
+```
+
+```bash
+# more vault
+
+$ANSIBLE_VAULT;1.1;AES256
+65613437643434336264643636343861343661326536646438366165346262313765353865633733
+3238663234353066353131336235383833366661643631300a313432363233363534656638613033
+62306561663933316435326536396562616562356532373639326331326466326364356632393564
+3566383166333039660a636537306164643166313666353736663332376164626365313038303734
+37363461366263313466376637656265333463643336373162656666373863633566653964393634
+3332643666363661653565376139393931303030376335323064
 ```
