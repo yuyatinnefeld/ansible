@@ -84,7 +84,7 @@ use the dynamic parameter (e.g {{file_state}} = touch)
 ansible-playbook -i inventry.ini tasks1.yml -e file_state=touch
 ```
 
-```bash
+```yml
 - hosts: product_02
   tasks:
     - name: " ✨ create a file for the product 02 ✨ "
@@ -100,7 +100,7 @@ ansible-playbook -i inventry.ini tasks1.yml -e file_state=touch
 web_file=/root/web-data123
 ```
 
-```bash
+```yml
 # tasks1.yml
 - hosts: web_servers
   ...
@@ -127,7 +127,7 @@ mkdir templates
 touch temp555.txt
 ```
 
-```bash
+```yml
 # templates/temp555.txt will be saved to /root/temp555_saved.txt
 - hosts: web_servers
   tasks:
@@ -181,6 +181,54 @@ touch create_role.yml
 touch tasks/create_user.yml
 ```
 
+```yml
+# create_play.yml
+---
+- hosts: product_02
+  vars:
+    user_name: root
+    user_state: present
+    ssh_key: ~/.ssh/cloud_key.pub
+  tasks:
+     - include_tasks: tasks/create_user.yml
+
+
+# create_role.yml
+---
+- hosts: product_02
+  tasks:
+     - include_role:
+         name: create_user
+       vars:
+         user_name: root
+         user_state: present
+         ssh_key: ~/.ssh/cloud_key.pub
+
+# tasks/create_user.yml
+---
+- name: " 🙌 create user on remote host 🙌" 
+  user:
+    name: '{{user_name}}'
+    state: '{{user_state}}'
+    remove: yes
+    shell: /bin/bash
+    groups: root
+    append: yes
+    password:
+
+- name: " 🔑 publish local ssh public key for remote login 🔑 "
+  authorized_key:
+    user: '{{user_name}}'
+    state: '{{user_state}}'
+    key: "{{ lookup('file', '{{ssh_key}}') }}"
+
+- name: " 🦾 add bashrc to include host and user 🦾 "
+  template:
+    dest: '~{{user_name}}/.bashrc'
+    src: templates/bashrc.j2    
+
+```
+
 create bashrc.j2
 ```bash
 touch templates/bashrc.js
@@ -215,4 +263,86 @@ cp templates/bashrc.j2 create_user/templates/
 ansible-playbook -i inventory.ini create_role.yml
 ```
 
+### configure the defaults variables
 
+1. delete user_state:present from the create_role.yml
+
+# create_role.yml
+
+```yml
+---
+- hosts: product_02
+  tasks:
+     - include_role:
+         name: create_user
+       vars:
+         user_name: root
+         ssh_key: ~/.ssh/cloud_key.pub
+```
+
+2. add defaults/main.yml the user_state
+
+```bash
+sudo vi create_user/defaults/main.yml
+```
+
+```bash
+---
+# defaults file for create_user
+user_state: present
+```
+
+```bash
+# as default present
+ansible-playbook -i inventory.ini create_role.yml
+```
+
+```bash
+# you can also use absent
+ansible-playbook -i inventory.ini create_role.yml -e user_statte=absent
+```
+
+### use flexible user name
+
+add user_name
+```bash
+vi create_user/defaults/main.yml
+```
+
+```bash
+---
+# defaults file for create_user
+user_state: present
+user_name: default
+```
+
+update roles README.md
+```bash
+vi create_user/README.md
+```
+
+```bash
+...
+# Define the user you would like to create
+user_name: default
+
+# Define the user state present or absent
+user_state: present
+```
+
+now you can create the user flexible
+```bash
+ansible-playbook -i inventory.ini create_role.yml -e user_name=yuya
+```
+
+check the new user in the home directory
+```bash
+ssh target02
+cd /home
+ls
+```
+
+delete user
+```bash
+ansible-playbook -i inventory.ini create_role.yml -e user_name=yuya -e user_state=absent
+```
