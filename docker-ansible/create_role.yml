@@ -1,0 +1,9 @@
+---
+- hosts: product_02
+  tasks:
+     - include_role:
+         name: create_user
+       vars:
+         user_name: root
+         user_state: present
+         ssh_key: ~/.ssh/cloud_key.pub

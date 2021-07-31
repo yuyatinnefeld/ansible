@@ -1,0 +1,46 @@
+- hosts: product_01
+  tasks:
+    - name: " ✨ create a tmp directory ✨ "
+      ansible.builtin.file:
+        path: /root/tmp
+        state: directory
+        mode: '0755'
+      tags:
+        - create-folder
+
+    - name: " ✨ create a file for the product 01 ✨ "
+      file:
+        dest: /root/product1-data
+        state: touch
+      tags:
+        - create-file
+
+- hosts: product_02
+  tasks:
+    - name: " ✨ create a file for the product 02 ✨ "
+      file:
+        dest: /root/product2-data
+        state: touch
+
+- hosts: web_servers
+  tasks:
+    - name: " ✨ create a file for the web servers ✨ "
+      file:
+        dest: /root/web-data
+        state: touch
+      tags:
+        - create-file
+
+    - name: " ✨ create a file for the web servers ✨ "
+      file:
+        dest: '{{web_file}}'
+        state: touch
+      tags:
+        - create-file
+
+    - name: " 💥 delete a file for the web servers 💥 "
+      file:
+        dest: /root/product1-data
+        state: absent
+      tags:
+        - delete-file

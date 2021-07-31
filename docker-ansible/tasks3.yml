@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: " ✨ create a file via ssh connection ✨ "
+      file:
+        dest: /root/ssh-created-data
+        state: touch
+
+- hosts: localhost
+  connection: local # this is much faster
+
+  tasks:
+    - name: " ✨ create a file via direct local connection ✨ "
+      file:
+        dest: /root/direct-created-data
+        state: touch

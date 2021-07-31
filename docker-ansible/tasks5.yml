@@ -1,0 +1,31 @@
+- hosts: product_01
+  vars:
+      packages: [git, vim, ruby]
+  tasks:
+    - name: " 💪 install packages for Debian style 💪 "
+      apt:
+        name: '{{item}}'
+        state: '{{pkg_state}}'
+      with_items: '{{packages}}'
+      when: ansible_os_family == "Debian"
+
+    - name: " 💪 install packages for RedHat style 💪 "
+      yum:
+        name: '{{item}}'
+        state: '{{pkg_state}}'
+      with_items: '{{packages}}'
+      when: ansible_os_family == "RedHat"
+
+    - name: " ✨ create files based on package names ✨ "
+      file:
+        dest: /root/tmp/{{item}}
+        state: '{{file_state}}'
+      with_items: '{{packages}}'
+      when: ansible_os_family == "Debian"
+
+
+
+
+
+
+

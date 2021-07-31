@@ -1,0 +1,30 @@
+- hosts: product_01
+  tasks:
+    - name: " ✨ create file for the product 1 ✨ "
+      shell:
+          touch bye.txt hello.txt
+
+- hosts: product_01
+  tasks:
+    - name: " 💥 remove file for the product 1 💥 "
+      shell: |
+          rm bye.txt
+
+- hosts: product_02
+  tasks:
+    - name: " 👋 messge for the product 2👋 "
+      debug:
+        msg: "Hello P2 World"
+
+- hosts: web_servers
+  tasks:
+    - name: " 🚀 setup for the web servers 🚀 "
+      debug:
+        msg: "install cmd ..."
+
+- hosts: db_servers
+  tasks:
+    - name: " 🤖 setup for the db servers 🤖 "
+      debug:
+        msg: "install cmd ..."
+        

@@ -1,0 +1,33 @@
+- hosts: product_02
+  vars:
+    animals:
+      cats:
+        tabby:
+          color: grey
+          size: middle
+        calico:
+          color: orange
+          size: middle
+      dogs:
+        shiba:
+          color: brawn
+          size: middle
+        retriver:
+          color: golden
+          size: big
+
+  tasks:
+  - name: " 🌀🐱 iterate over cats array 🌀🐱 "
+    file:
+      name: '/root/tmp/{{item.key}}-{{item.value.color}}'
+      state: '{{file_state}}'
+    with_dict: '{{animals.cats}}'
+
+  - name: " 🌀🐶 iterate over bog array 🌀🐶 "
+    file:
+      name: '/root/tmp/{{item.key}}-{{item.value.color}}'
+      state: '{{file_state}}'
+    with_dict: '{{animals.dogs}}'
+    when: 'item.value.size == "big"'
+
+

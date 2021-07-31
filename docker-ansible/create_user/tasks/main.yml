@@ -1,0 +1,22 @@
+---
+# tasks file for user_create
+- name: " 🙌 create user on remote host 🙌" 
+  user:
+    name: '{{user_name}}'
+    state: '{{user_state}}'
+    remove: yes
+    shell: /bin/bash
+    groups: root
+    append: yes
+    password:
+
+- name: " 🔑 publish local ssh public key for remote login 🔑 "
+  authorized_key:
+    user: '{{user_name}}'
+    state: '{{user_state}}'
+    key: "{{ lookup('file', '{{ssh_key}}') }}"
+
+- name: " 🦾 add bashrc to include host and user 🦾 "
+  template:
+    dest: '~{{user_name}}/.bashrc'
+    src: templates/bashrc.j2    

@@ -1,0 +1,15 @@
+- hosts: web_servers
+  tasks:
+    - name: " 🚀✨ create files 🚀✨ "
+      template:
+        src: templates/temp555.txt
+        dest: /root/temp555_saved.txt
+      tags:
+        - create
+
+    - name: " 🚀💥 remove files 🚀💥 "
+      file:
+        dest: /root/temp555_saved.txt
+        state: absent
+      tags:
+        - destroy

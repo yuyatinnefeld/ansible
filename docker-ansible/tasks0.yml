@@ -1,0 +1,13 @@
+- hosts: product_01
+  tasks:
+    - name: " 🚀 debug message 🚀 "
+      debug:
+        msg: "Hello P1 World "
+
+- hosts: product_02
+  tasks:
+    - name: " 👋 debug message 👋 "
+      debug:
+        msg: "Hello P2 World"
+
+        

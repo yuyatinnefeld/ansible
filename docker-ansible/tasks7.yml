@@ -1,0 +1,33 @@
+# DOES NOT WOKR:(
+
+- hosts: product_02
+  vars:
+    animals:
+      cats:
+        tabby:
+          color: grey
+          size: middle
+        calico:
+          color: orange
+          size: middle
+      dogs:
+        shiba:
+          color: brawn
+          size: middle
+        retriver:
+          color: golden
+          size: big
+  tasks:
+  - name: " 🐶🌀🐱 deploy a dictionary looping template file 🐶🌀🐱 "
+    template:
+      src: templates/temp-animal.j2
+      dest: /root/tmp/temp-animal.txt
+    tags:
+      - create
+      
+  - name: remove the templated file
+    file:
+      dest: /root/tmp/temp-animal.txt
+      state: absent
+    tags:
+      - destroy
