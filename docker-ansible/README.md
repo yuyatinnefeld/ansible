@@ -9,7 +9,7 @@
 ### 2. [Create-Playbook-Tasks](#Create-Playbook-Tasks)
 ### 3. [Roles](#Roles)
 ### 4. [Secrets](#Secrets)
-### 5. Network Management
+### 5. [Network-Management](#Network-Management)
 
 
 ## Initial-Setup
@@ -392,6 +392,7 @@ password: '{{vault_special_secretpwd}}'
 ansible-vault encrypt vault
 ```
 
+### encrypt
 ```bash
 # ansible-vault encrypt vault (e.g. hallo)
 New Vault password: 
@@ -410,3 +411,40 @@ $ANSIBLE_VAULT;1.1;AES256
 37363461366263313466376637656265333463643336373162656666373863633566653964393634
 3332643666363661653565376139393931303030376335323064
 ```
+
+### edit
+```bash
+ansible-vault edit vault
+```
+
+after the vault setup you must use --ask-vault-pass for the playbook run
+```bash
+ansible-playbook -i inventory.ini tasks1.yml --ask-vault-pass
+```
+
+### decrypt vault
+```bash
+ansible-vault decrypt vault
+```
+
+## Network-Management
+
+
+```bash
+# select ip address with netaddr
+ansible-playbook -i inventory.ini tasks8.yml
+
+# increment address with netaddr
+ansible-playbook -i inventory.ini tasks9.yml
+
+```
+
+### Netork interface config
+
+create /etc/network direcotory and interface file in the web_server hosts
+```bash
+cd /etc
+mkdir network
+touch network/interfaces
+```
+
