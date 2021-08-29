@@ -5,9 +5,6 @@
 ```bash
 # edit hosts file
 vi /etc/ansible/hosts
-
-# or create inventory.ini
-vi inventory.ini
 ```
 
 connect the target host
@@ -30,7 +27,7 @@ run the test code
 ```bash
 ansible 172.18.0.4 -a "echo test"
 
-# if you need a password
+# if you didn't not connect ssh
 ansible 172.18.0.4 -a "echo test" --extra-vars "ansible_user=root ansible_password=p@ssword123"
 
 ```
@@ -39,7 +36,7 @@ ansible 172.18.0.4 -a "echo test" --extra-vars "ansible_user=root ansible_passwo
 - Ad-hoc execute
 - Playbook execute
 
-### Ad-hoc execute
+## Ad-hoc execute
 
 ```bash
 # ping
@@ -52,7 +49,7 @@ ansible 172.18.0.4 -a "echo test"
 ansible 172.18.0.4 -a "mkdir testomato"
 ```
 
-### Playbook execute
+## Playbook
 
 ```bash
 mkdir ansible-playbook
@@ -78,3 +75,14 @@ vi site.yml
 ```bash
 ansible-playbook site.yml
 ```
+[More about Playbook](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands/learn-playbook)
+
+
+## Roles
+[More about Roles](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands/learn-roles)
+
+## Secrets
+[More about Secrets](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands/learn-secrets)
+
+## Network Management
+[More about Network](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands/learn-network)

@@ -1,5 +1,6 @@
-<h1 align="center">Ansible </h1> <br>
-<h2>🐍 Table of Contents 🐍</h2>
+# Ansible
+
+## Table of Contents
 
 - [About](#about)
 - [Benefit](#benefit)
@@ -26,7 +27,6 @@ Ansible is a radically simple IT automation system. It handles configuration man
 ## [Ansible + Docker](https://github.com/yuyatinnefeld/ansible/tree/master/docker-ansible)
 
 ## [Ansible + CentOS](https://github.com/yuyatinnefeld/ansible/tree/master/centos-ansible)
-
 
 ## [Ansible Basic Commands](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands)
 
