@@ -25,6 +25,8 @@ Ansible is a radically simple IT automation system. It handles configuration man
 
 ## [Ansible + Docker](https://github.com/yuyatinnefeld/ansible/tree/master/docker-ansible)
 
-## Ansible + Centos (Vagrant)
+## [Ansible + CentOS](https://github.com/yuyatinnefeld/ansible/tree/master/centos-ansible)
 
+
+## [Ansible Basic Commands](https://github.com/yuyatinnefeld/ansible/tree/master/basic-commands)
 
