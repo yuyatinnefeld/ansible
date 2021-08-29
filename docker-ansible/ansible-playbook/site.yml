@@ -1,0 +1,24 @@
+- hosts: 172.18.0.4
+  gather_facts: yes
+  remote_user: root
+  tasks:
+    - name: " ✨create a folder ✨ "
+      ansible.builtin.file:
+        path: /root/test
+        state: directory
+        mode: '0755'
+      tags:
+        - create-folder
+
+
+- hosts: 172.18.0.5
+  gather_facts: yes
+  remote_user: root
+  tasks:
+    - name: " ✨create a folder ✨ "
+      ansible.builtin.file:
+        path: /root/test
+        state: directory
+        mode: '0755'
+      tags:
+        - create-folder

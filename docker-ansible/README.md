@@ -14,14 +14,9 @@
 
 ## Initial-Setup
 
-git clone
-
-```bash
-git clone https://github.com/Naoto92X82V99/docker-ansible.git
-```
-
 container run
 ```bash
+cd docker-ansible
 docker-compose up -d
 ```
 
@@ -30,12 +25,15 @@ access ansible container
 docker exec -it ansible /bin/sh
 
 #python3 as default
+apt-get update
+
 update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
 #install pip
-apt install python3-pip	
+apt install -y python3-pip	
+apt install -y vim
 
-# ssh target01 and target02 from the ansible container
+# ssh target01 - target05 from the ansible container
 
 ssh target01    # yes
 exit
@@ -46,6 +44,12 @@ exit
 ```bash
 docker exec -it ansible /bin/sh
 ansible localhost -m ping
+```
+see the IP addresses of target hosts
+```bash
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' target01
+
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' target02
 ```
 
 ansible cmd for target01 and target02
