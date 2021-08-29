@@ -1,0 +1,25 @@
+- hosts: target01
+  tasks:
+    - name: " 💪 install apache for Debian style 💪 "
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_os_family == "Debian"
+
+    - name: " ✨ setup config file ✨ "
+      copy:
+        src: apache2.conf
+        dest: /etc/apache2/apache2.conf
+
+    - name: " ✨ configure the top page ✨ "
+      copy:
+        src: index.html
+        dest: /var/www/index.hthtml
+
+    - name: " 🚀 enable the apache service 🚀 "
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      tags:
+        - started

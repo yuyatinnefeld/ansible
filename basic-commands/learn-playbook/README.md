@@ -3,19 +3,21 @@
 ## tags
 use tags for the specific commands
 ```bash
-ansible-playbook -i inventry.ini tasks1.yml --tags create-file
-ansible-playbook -i inventry.ini tasks1.yml --tags delete-file
+cd ansible-playbook
+ansible-playbook -i ../inventory.ini tasks1.yml
+ansible-playbook -i ../inventory.ini tasks1.yml --tags create-file
+ansible-playbook -i ../inventory.ini tasks1.yml --tags delete-file
 ```
 
 skip only create-file tag
 ```bash
-ansible-playbook -i inventry.ini tasks1.yml --skip-tags create-file
+ansible-playbook -i ../inventory.ini tasks1.yml --skip-tags create-file
 ```
 
 ### variables
 use the dynamic parameter (e.g {{file_state}} = touch)
 ```bash
-ansible-playbook -i inventry.ini tasks1.yml -e file_state=touch
+ansible-playbook -i ../inventory.ini tasks1.yml -e file_state=touch
 ```
 
 ```yml

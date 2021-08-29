@@ -8,8 +8,8 @@ ansible-galaxy init create_user
 
 create playbooks
 ```bash
-touch create_play.yml
-touch create_role.yml
+touch ansible-playbook/create_play.yml
+touch ansible-playbook/create_role.yml
 touch tasks/create_user.yml
 ```
 
@@ -99,7 +99,7 @@ ansible-playbook -i inventory.ini create_role.yml
 
 1. delete user_state:present from the create_role.yml
 
-# create_role.yml
+## create_role.yml
 
 ```yml
 ---
