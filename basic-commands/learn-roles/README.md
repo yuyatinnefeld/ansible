@@ -1,6 +1,6 @@
 # Roles
 
-### run tasks/create_user.yml without the role
+## run tasks/create_user.yml without the role
 create user
 ```bash
 ansible-galaxy init create_user
@@ -78,7 +78,7 @@ docker exec -it ansible sh
 ansible-playbook -i inventory.ini create_play.yml
 ```
 
-### run user_create/tasks/create_user.yml with the role
+## run user_create/tasks/create_user.yml with the role
 
 overwrite the setup into the role "create_user"
 
@@ -95,7 +95,7 @@ cp templates/bashrc.j2 create_user/templates/
 ansible-playbook -i inventory.ini create_role.yml
 ```
 
-### configure the defaults variables
+## configure the defaults variables
 
 1. delete user_state:present from the create_role.yml
 
@@ -134,7 +134,7 @@ ansible-playbook -i inventory.ini create_role.yml
 ansible-playbook -i inventory.ini create_role.yml -e user_statte=absent
 ```
 
-### use flexible user name
+## use flexible user name
 
 add user_name
 ```bash
@@ -179,7 +179,7 @@ delete user
 ansible-playbook -i inventory.ini create_role.yml -e user_name=yuya -e user_state=absent
 ```
 
-### import role from ansible galaxy
+## import role from ansible galaxy
 ```bash
 # login with the github user
 ansible-galaxy login

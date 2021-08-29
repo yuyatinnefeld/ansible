@@ -1,7 +1,6 @@
 # Playbook
 
-
-### tags
+## tags
 use tags for the specific commands
 ```bash
 ansible-playbook -i inventry.ini tasks1.yml --tags create-file
@@ -28,7 +27,7 @@ ansible-playbook -i inventry.ini tasks1.yml -e file_state=touch
         state: '{{file_state}}'
 ```
 
-### variables by inventory
+## variables by inventory
 ```bash
 # inventory.ini
 [web:vars]

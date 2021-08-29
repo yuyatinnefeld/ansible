@@ -30,7 +30,7 @@ password: '{{vault_special_secretpwd}}'
 ansible-vault encrypt vault
 ```
 
-### encrypt
+## encrypt
 ```bash
 # ansible-vault encrypt vault (e.g. hallo)
 New Vault password: 
@@ -50,7 +50,7 @@ $ANSIBLE_VAULT;1.1;AES256
 3332643666363661653565376139393931303030376335323064
 ```
 
-### edit
+## edit
 ```bash
 ansible-vault edit vault
 ```
@@ -60,29 +60,7 @@ after the vault setup you must use --ask-vault-pass for the playbook run
 ansible-playbook -i inventory.ini tasks1.yml --ask-vault-pass
 ```
 
-### decrypt vault
+## decrypt vault
 ```bash
 ansible-vault decrypt vault
 ```
-
-## Network-Management
-
-
-```bash
-# select ip address with netaddr
-ansible-playbook -i inventory.ini tasks8.yml
-
-# increment address with netaddr
-ansible-playbook -i inventory.ini tasks9.yml
-
-```
-
-### Netork interface config
-
-create /etc/network direcotory and interface file in the web_server hosts
-```bash
-cd /etc
-mkdir network
-touch network/interfaces
-```
-
